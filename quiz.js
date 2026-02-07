@@ -1,9 +1,3 @@
-/**
- * MindCare - Quiz Functionality
- * File: quiz.js
- * 
- * JavaScript untuk kuesioner kesehatan mental
- */
 
 // ================================================
 // QUIZ DATA - Questions & Options
@@ -423,3 +417,4 @@ if (typeof module !== 'undefined' && module.exports) {
         changeQuestion
     };
 }
+
