@@ -1,9 +1,4 @@
-/**
- * MindCare - Login Page Styles
- * File: css/login.css
- *
- * Styling khusus untuk halaman login/register
- */
+
 
 /* ================================================
    PASSWORD TOGGLE ICON
@@ -372,3 +367,4 @@
     /* Tambah underline saat hover */
     text-decoration: underline;
 }
+
