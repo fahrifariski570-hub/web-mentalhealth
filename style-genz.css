@@ -1,0 +1,882 @@
+/**
+ * MindCare - Gen Z Vibrant Stylesheet
+ * File: css/style-genz.css
+ * 
+ * Modern, colorful, and engaging design for Gen Z audience
+ */
+
+/* ================================================
+   CSS VARIABLES - Gen Z Color Palette
+   ================================================ */
+:root {
+    /* ===== PRIMARY COLORS ===== */
+    /* Warna ungu untuk aksen dan gradient */
+    --primary-purple: #8B5CF6;
+    /* Warna pink untuk highlight dan tombol */
+    --primary-pink: #EC4899;
+    /* Warna biru untuk elemen sekunder */
+    --primary-blue: #3B82F6;
+    /* Gradient utama (ungu ke ungu tua dengan sudut 135 derajat) */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Gradient alternatif pink (dari pink ke merah) */
+    --primary-gradient-alt: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+    /* ===== SECONDARY COLORS ===== */
+    --secondary-cyan: #06B6D4; /* Warna cyan untuk elemen tambahan */
+    --secondary-orange: #F59E0B; /* Warna orange untuk warning/alert */
+    --secondary-green: #10B981; /* Warna hijau untuk success */
+    --secondary-yellow: #FBBF24; /* Warna kuning untuk info */
+
+    /* ===== BACKGROUND COLORS ===== */
+    --bg-light: #FAFAFA; /* Warna background halaman (off-white) */
+    --bg-card: #FFFFFF; /* Warna background card/container (putih) */
+    /* Gradient background halaman utama */
+    --bg-gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Gradient background dengan warna pink (untuk tombol/section) */
+    --bg-gradient-pink: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    /* Gradient background biru (untuk navigasi button) */
+    --bg-gradient-blue: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    /* Gradient background ungu (opsional) */
+    --bg-gradient-purple: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+
+    /* ===== TEXT COLORS ===== */
+    --text-primary: #1F2937; /* Teks utama (dark gray) */
+    --text-secondary: #6B7280; /* Teks secondary/subtitle (medium gray) */
+    --text-light: #9CA3AF; /* Teks helper/placeholder (light gray) */
+    --text-white: #FFFFFF; /* Teks terang/contrast untuk bg gelap */
+
+    /* ===== SHADOWS & EFFECTS ===== */
+    /* Shadow kecil dengan blur 8px dan opacity 0.1 pada warna purple */
+    --shadow-sm: 0 2px 8px rgba(139, 92, 246, 0.1);
+    /* Shadow medium dengan blur 16px */
+    --shadow-md: 0 4px 16px rgba(139, 92, 246, 0.15);
+    /* Shadow besar dengan blur 32px */
+    --shadow-lg: 0 8px 32px rgba(139, 92, 246, 0.2);
+    /* Shadow dengan warna pink untuk elemen highlight */
+    --shadow-colored: 0 8px 32px rgba(236, 72, 153, 0.3);
+    /* Shadow glow (cahaya) untuk efek neon */
+    --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.4);
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 8px; /* Border radius kecil (sudut sedikit rounded) */
+    --radius-md: 16px; /* Border radius medium */
+    --radius-lg: 24px; /* Border radius besar */
+    --radius-xl: 32px; /* Border radius extra large */
+    --radius-full: 9999px; /* Border radius penuh (untuk pill shape) */
+
+    /* ===== SPACING ===== */
+    --spacing-xs: 8px; /* Jarak extra small */
+    --spacing-sm: 16px; /* Jarak small */
+    --spacing-md: 24px; /* Jarak medium (standard) */
+    --spacing-lg: 32px; /* Jarak large */
+    --spacing-xl: 48px; /* Jarak extra large */
+}
+
+/* ================================================
+   GLOBAL RESET & BASE STYLES
+   ================================================ */
+* {
+    /* Hapus default margin dari semua elemen */
+    margin: 0;
+    /* Hapus default padding dari semua elemen */
+    padding: 0;
+    /* Hitung width/height include padding & border (standard untuk modern CSS) */
+    box-sizing: border-box;
+}
+
+body {
+    /* Font stack yang diutamakan: Inter (custom) > DM Sans > system fonts */
+    font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Warna background halaman */
+    background: var(--bg-light);
+    /* Warna teks default */
+    color: var(--text-primary);
+    /* Sembunyikan scrollbar horizontal */
+    overflow-x: hidden;
+    /* Tinggi baris ideal untuk readability (1.6 = line-height yang baik) */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* Bold untuk semua heading */
+    font-weight: 700;
+    /* Tinggi baris lebih kecil untuk heading (lebih compact) */
+    line-height: 1.2;
+    /* Kurangi jarak antar letter untuk tampilan modern (-0.02em = -2% dari font-size) */
+    letter-spacing: -0.02em;
+}
+
+/* ================================================
+   GLASSMORPHISM UTILITY
+   ================================================ */
+.glass {
+    /* Warna putih semi-transparent (25% opaque) untuk efek glass */
+    background: rgba(255, 255, 255, 0.25);
+    /* Blur background di belakang elemen (glassmorphism effect) */
+    backdrop-filter: blur(10px);
+    /* Vendor prefix untuk Safari/Chrome older versions */
+    -webkit-backdrop-filter: blur(10px);
+    /* Border putih semi-transparent untuk definisi elemen */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-dark {
+    /* Warna hitam semi-transparent untuk glass effect gelap */
+    background: rgba(0, 0, 0, 0.25);
+    /* Blur background di belakang elemen */
+    backdrop-filter: blur(10px);
+    /* Vendor prefix untuk browser compatibility */
+    -webkit-backdrop-filter: blur(10px);
+    /* Border putih tipis untuk contrast ke background gelap */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ================================================
+   NAVBAR - Vibrant & Modern
+   ================================================ */
+.navbar {
+    /* Background putih (bg-card = white) dengan !important untuk override Bootstrap */
+    background: var(--bg-card) !important;
+    /* Padding vertikal (1rem = 16px) */
+    padding: 1rem 0;
+    /* Shadow untuk kedalaman (elevation effect) */
+    box-shadow: var(--shadow-md);
+    /* Blur background untuk glass effect */
+    backdrop-filter: blur(10px);
+    /* Navbar tetap di atas saat scroll (sticky navbar) */
+    position: sticky;
+    /* Posisi dari atas halaman */
+    top: 0;
+    /* Layer paling atas (di atas elemen lain) */
+    z-index: 1000;
+}
+
+.navbar-brand {
+    /* Ukuran font untuk logo (1.75rem = 28px) */
+    font-size: 1.75rem;
+    /* Font sangat bold/tebal */
+    font-weight: 800;
+    /* Terapkan gradient sebagai warna teks (bukan background) */
+    background: var(--primary-gradient);
+    /* Jadikan background sebagai clip untuk teks (text menjadi gradient) */
+    -webkit-background-clip: text;
+    /* Buat teks transparan agar gradient terlihat */
+    -webkit-text-fill-color: transparent;
+    /* Modern equivalent untuk -webkit-background-clip */
+    background-clip: text;
+}
+
+.nav-link {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    margin: 0 1rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+    color: var(--primary-purple) !important;
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+    border-radius: var(--radius-full);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* User Profile in Navbar */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background: var(--bg-light);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+    background: var(--primary-gradient);
+    color: white;
+    transform: scale(1.05);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+}
+
+/* ================================================
+   HERO SECTION - Bold & Eye-catching
+   ================================================ */
+.hero {
+    background: var(--bg-gradient-main);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: slideInUp 0.8s ease;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    animation: slideInUp 1s ease;
+}
+
+.hero-emoji {
+    font-size: 8rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================
+   BUTTONS - Vibrant & Interactive
+   ================================================ */
+.btn-primary-custom {
+    background: var(--primary-gradient-alt);
+    border: none;
+    padding: 16px 48px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-colored);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary-custom:hover::before {
+    left: 100%;
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(236, 72, 153, 0.4);
+}
+
+.btn-primary-custom:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Alternative Button Styles */
+.btn-gradient-blue {
+    background: var(--bg-gradient-blue);
+}
+
+.btn-gradient-purple {
+    background: var(--bg-gradient-main);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-purple);
+    color: var(--primary-purple);
+}
+
+.btn-outline:hover {
+    background: var(--primary-purple);
+    color: white;
+}
+
+/* Navigation Buttons - Blue Gradient */
+.btn-nav {
+    background: var(--bg-gradient-blue);
+    border: none;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(79, 172, 254, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.btn-nav:hover::before {
+    left: 100%;
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 172, 254, 0.5);
+}
+
+.btn-nav:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+}
+
+/* ================================================
+   FEATURE CARDS - Modern & Engaging
+   ================================================ */
+.features {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.feature-card {
+    background: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        var(--primary-purple), 
+        var(--primary-pink), 
+        var(--primary-blue), 
+        var(--primary-purple)
+    );
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.feature-card:hover::before {
+    opacity: 0.1;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-purple);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: var(--shadow-colored);
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================
+   QUIZ SECTION - Colorful & Fun
+   ================================================ */
+.quiz-section {
+    background: linear-gradient(180deg, var(--bg-light) 0%, #E0E7FF 100%);
+    padding: 80px 0;
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.question-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-md);
+    display: none;
+    animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.question-card.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.question-card h4 {
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.option-btn {
+    background: var(--bg-card);
+    border: 2px solid #E5E7EB;
+    padding: 18px 25px;
+    margin: 12px 0;
+    width: 100%;
+    text-align: left;
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.option-btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateX(10px);
+    border-color: transparent;
+    box-shadow: var(--shadow-colored);
+}
+
+.option-btn.selected {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: var(--shadow-colored);
+    transform: scale(1.02);
+}
+
+.progress-bar-custom {
+    background-color: #E5E7EB;
+    height: 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    background: var(--primary-gradient-alt);
+    height: 100%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+.result-container {
+    background: var(--bg-card);
+    padding: 60px 40px;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    display: none;
+    animation: zoomIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-lg);
+}
+
+.result-container.show {
+    display: block;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.result-score {
+    font-size: 5rem;
+    font-weight: 900;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 30px 0;
+    text-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+.result-message {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* ================================================
+   AUTH PAGE STYLES
+   ================================================ */
+.auth-page {
+    background: var(--bg-gradient-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 50px 40px;
+    box-shadow: var(--shadow-lg);
+    animation: slideInUp 0.8s ease;
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-logo i {
+    font-size: 4rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-logo h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 10px 0;
+}
+
+.auth-logo p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.auth-form h2 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.auth-form .subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 25px;
+}
+
+.auth-form label {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.auth-form .form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #E5E7EB;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--bg-light);
+}
+
+.auth-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-auth.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: var(--shadow-colored);
+}
+
+.btn-auth.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-secondary);
+}
+
+.auth-switch a {
+    color: var(--primary-purple);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background: #FEE2E2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    display: none;
+    font-size: 0.9rem;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.back-home {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-home a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.back-home a:hover {
+    color: var(--primary-purple);
+}
+
+/* ================================================
+   FOOTER - Clean & Modern
+   ================================================ */
+footer {
+    background: var(--text-primary);
+    color: white;
+    padding: 60px 0 30px;
+    margin-top: 80px;
+}
+
+footer a {
+    color: var(--primary-pink);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--primary-purple);
+    text-decoration: underline;
+}
+
+/* ================================================
+   RESPONSIVE DESIGN
+   ================================================ */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .quiz-container {
+        padding: 30px 20px;
+    }
+    
+    .result-score {
+        font-size: 3.5rem;
+    }
+    
+    .auth-card {
+        padding: 40px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 80px 0 60px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-primary-custom {
+        padding: 14px 32px;
+        font-size: 1rem;
+    }
+}
+
+/* ================================================
+   UTILITY CLASSES
+   ================================================ */
+.text-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bg-gradient-purple {
+    background: var(--primary-gradient);
+}
+
+.bg-gradient-pink {
+    background: var(--primary-gradient-alt);
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg);
+}
+
+.shadow-colored {
+    box-shadow: var(--shadow-colored);
+}
+
+.rounded-lg {
+    border-radius: var(--radius-lg);
+}
+
+.rounded-xl {
+    border-radius: var(--radius-xl);
+}
+
+.rounded-full {
+    border-radius: var(--radius-full);
+}

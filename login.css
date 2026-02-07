@@ -1,0 +1,374 @@
+/**
+ * MindCare - Login Page Styles
+ * File: css/login.css
+ *
+ * Styling khusus untuk halaman login/register
+ */
+
+/* ================================================
+   PASSWORD TOGGLE ICON
+   ================================================ */
+
+/**
+ * Icon untuk toggle show/hide password (mata icon)
+ */
+.password-toggle {
+    /* Posisi absolute dalam input field (kanan) */
+    position: absolute;
+    /* Jarak dari kanan input field */
+    right: 18px;
+    /* Tengah vertikal dalam input */
+    top: 50%;
+    /* Geser naik setengah tinggi icon */
+    transform: translateY(-50%);
+    /* Cursor pointer (clickable) */
+    cursor: pointer;
+    /* Warna awal (gray) */
+    color: var(--text-secondary);
+    /* Animasi smooth untuk perubahan warna */
+    transition: color 0.3s ease;
+}
+
+/**
+ * Warna icon saat hover (user hanya di atas icon)
+ */
+.password-toggle:hover {
+    /* Ubah warna menjadi purple */
+    color: var(--primary-purple);
+}
+
+/* ================================================
+   FORM GROUPS & INPUTS
+   ================================================ */
+
+/**
+ * Container untuk input field (untuk positioning password toggle)
+ */
+.form-group {
+    /* Relative positioning untuk absolute password toggle */
+    position: relative;
+}
+
+/* ================================================
+   SOCIAL LOGIN BUTTONS
+   ================================================ */
+
+/**
+ * Container untuk social login buttons (Google, GitHub)
+ */
+.social-login {
+    /* Horizontal flex layout */
+    display: flex;
+    /* Jarak antar button */
+    gap: 12px;
+    /* Margin atas untuk spacing dari form sebelumnya */
+    margin-top: 20px;
+}
+
+/**
+ * Styling untuk social login buttons
+ */
+.social-btn {
+    /* Setiap button mengambil space yang sama (flex grow) */
+    flex: 1;
+    /* Padding dalam button */
+    padding: 12px;
+    /* Border radius medium */
+    border-radius: var(--radius-md);
+    /* Border abu-abu bukan solid */
+    border: 2px solid #E5E7EB;
+    /* Background putih */
+    background: white;
+    /* Cursor pointer untuk interactivity */
+    cursor: pointer;
+    /* Smooth transition untuk perubahan */
+    transition: all 0.3s ease;
+    /* Font bold */
+    font-weight: 600;
+    /* Flex untuk center icon dan text */
+    display: flex;
+    /* Vertikal center */
+    align-items: center;
+    /* Horizontal center */
+    justify-content: center;
+    /* Jarak antara icon dan text */
+    gap: 8px;
+}
+
+/**
+ * Efek hover pada social buttons
+ */
+.social-btn:hover {
+    /* Border berubah purple saat hover */
+    border-color: var(--primary-purple);
+    /* Naik sedikit (lift effect) */
+    transform: translateY(-2px);
+    /* Tambah shadow */
+    box-shadow: var(--shadow-md);
+}
+
+/**
+ * Warna khusus untuk Google button (brand color Google)
+ */
+.social-btn.google {
+    color: #DB4437; /* Red Google brand color */
+}
+
+/**
+ * Warna khusus untuk GitHub button (brand color GitHub)
+ */
+.social-btn.github {
+    color: #333; /* Dark gray GitHub brand color */
+}
+
+/* ================================================
+   DIVIDER (SEPARATOR TEXT)
+   ================================================ */
+
+/**
+ * Divider yang memisahkan email login dari social login
+ * Styling: "line --- or --- line"
+ */
+.divider {
+    /* Flex layout untuk align text dan lines */
+    display: flex;
+    /* Vertikal center */
+    align-items: center;
+    /* Text center */
+    text-align: center;
+    /* Margin vertikal untuk spacing */
+    margin: 30px 0;
+    /* Warna text (gray) */
+    color: var(--text-secondary);
+}
+
+/**
+ * Garis horizontal sebelum dan sesudah text
+ * ::before = garis kiri, ::after = garis kanan
+ */
+.divider::before,
+.divider::after {
+    /* Pseudo elemen (garis) */
+    content: '';
+    /* Setiap garis mengambil space yang equal */
+    flex: 1;
+    /* Garis horizontal (border bawah) */
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/**
+ * Text "or" di tengah divider
+ */
+.divider span {
+    /* Padding samping untuk space dari garis */
+    padding: 0 15px;
+    /* Ukuran font kecil */
+    font-size: 0.9rem;
+    /* Sedikit bold */
+    font-weight: 500;
+}
+
+/* ================================================
+   SUCCESS & ERROR MESSAGES
+   ================================================ */
+
+/**
+ * Success message (berhasil login/register/reset password)
+ */
+.success-message {
+    /* Background hijau muda (success color) */
+    background: #D1FAE5;
+    /* Border hijau (sesuai background) */
+    border: 1px solid #6EE7B7;
+    /* Text warna hijau tua (contrast baik) */
+    color: #065F46;
+    /* Padding dalam message */
+    padding: 12px 16px;
+    /* Border radius medium */
+    border-radius: var(--radius-md);
+    /* Margin bawah untuk spacing dari elemen berikutnya */
+    margin-bottom: 20px;
+    /* Sembunyikan default (hanya tampil saat .show class) */
+    display: none;
+    /* Font size kecil */
+    font-size: 0.9rem;
+}
+
+/**
+ * Show class untuk success message (ditambah via JavaScript)
+ */
+.success-message.show {
+    /* Tampilkan message */
+    display: block;
+    /* Animasi slide masuk dari atas */
+    animation: slideInDown 0.5s ease;
+}
+
+/**
+ * Keyframe untuk animasi slide in dari atas
+ */
+@keyframes slideInDown {
+    from {
+        /* Start: transparent dan di atas (-20px) */
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        /* End: opaque dan posisi normal */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================
+   PASSWORD STRENGTH INDICATOR
+   ================================================ */
+
+/**
+ * Container untuk password strength bar
+ */
+.password-strength {
+    /* Tinggi bar (4px) */
+    height: 4px;
+    /* Background abu-abu (dasar) */
+    background: #E5E7EB;
+    /* Sudut sedikit rounded */
+    border-radius: 2px;
+    /* Margin atas dari input */
+    margin-top: 8px;
+    /* Sembunyikan overflow (untuk bar yang animated) */
+    overflow: hidden;
+    /* Sembunyikan default (hanya tampil saat .show) */
+    display: none;
+}
+
+/**
+ * Show class untuk strength indicator (ditambah via JavaScript)
+ */
+.password-strength.show {
+    /* Tampilkan indicator */
+    display: block;
+}
+
+/**
+ * Bar yang di-animate berdasarkan strength password
+ */
+.password-strength-bar {
+    /* Fill penuh tinggi container */
+    height: 100%;
+    /* Smooth animation untuk change width */
+    transition: all 0.3s ease;
+    /* Sudut rounded */
+    border-radius: 2px;
+}
+
+/**
+ * Weak password (0-2 kriteria) - 33% width, merah
+ */
+.password-strength-bar.weak {
+    /* 33% dari container (sepertiga) */
+    width: 33%;
+    /* Warna merah (danger) */
+    background: #EF4444;
+}
+
+/**
+ * Medium password (3-4 kriteria) - 66% width, orange
+ */
+.password-strength-bar.medium {
+    /* 66% dari container (dua per tiga) */
+    width: 66%;
+    /* Warna orange (warning) */
+    background: #F59E0B;
+}
+
+/**
+ * Strong password (5 kriteria) - 100% width, hijau
+ */
+.password-strength-bar.strong {
+    /* 100% dari container (penuh) */
+    width: 100%;
+    /* Warna hijau (success) */
+    background: #10B981;
+}
+
+/* ================================================
+   CHECKBOX STYLING
+   ================================================ */
+
+/**
+ * Custom checkbox container (label + input)
+ */
+.checkbox-custom {
+    /* Flex layout horizontal */
+    display: flex;
+    /* Vertikal center */
+    align-items: center;
+    /* Jarak antara checkbox dan label */
+    gap: 8px;
+    /* Margin vertikal */
+    margin: 15px 0;
+}
+
+/**
+ * Styling checkbox input
+ */
+.checkbox-custom input[type="checkbox"] {
+    /* Ukuran checkbox (18x18 pixel) */
+    width: 18px;
+    height: 18px;
+    /* Cursor pointer */
+    cursor: pointer;
+}
+
+/**
+ * Label text untuk checkbox
+ */
+.checkbox-custom label {
+    /* Hapus default margin */
+    margin: 0;
+    /* Cursor pointer untuk clickable label */
+    cursor: pointer;
+    /* Ukuran font kecil */
+    font-size: 0.9rem;
+    /* Warna text (gray) */
+    color: var(--text-secondary);
+}
+
+/* ================================================
+   FORGOT PASSWORD SECTION
+   ================================================ */
+
+/**
+ * Container untuk forgot password link
+ */
+.forgot-password {
+    /* Text align kanan */
+    text-align: right;
+    /* Margin atas negatif (offset dari form-group padding) */
+    margin-top: -10px;
+    /* Margin bawah untuk spacing ke elemen berikutnya */
+    margin-bottom: 20px;
+}
+
+/**
+ * Link styling untuk forgot password
+ */
+.forgot-password a {
+    /* Warna purple (brand color) */
+    color: var(--primary-purple);
+    /* Ukuran font kecil */
+    font-size: 0.9rem;
+    /* Hapus underline default link */
+    text-decoration: none;
+    /* Semi-bold font */
+    font-weight: 600;
+}
+
+/**
+ * Hover effect untuk forgot password link
+ */
+.forgot-password a:hover {
+    /* Tambah underline saat hover */
+    text-decoration: underline;
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html> <!-- Deklarasi dokumen HTML5 -->
+<html lang="id"> <!-- Set bahasa halaman ke Indonesia -->
+<head>
+    <!-- Set character encoding ke UTF-8 (support karakter khusus) -->
+    <meta charset="UTF-8">
+    <!-- Viewport untuk responsif design (mobile-first approach) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta description untuk SEO -->
+    <meta name="description" content="Login ke MindCare - Platform kesehatan mental untuk Gen Z">
+    <!-- Judul halaman (tampil di tab browser) -->
+    <title>Login - MindCare</title>
+
+    <!-- Bootstrap CSS (CDN) - Framework CSS untuk layout responsif -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts - Font custom Inter untuk tampilan modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (CDN) - Library icon dari FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS - Styling utama Gen Z -->
+    <link rel="stylesheet" href="style-genz.css">
+    <!-- Custom CSS - Styling khusus login page -->
+    <link rel="stylesheet" href="login.css">
+
+</head>
+<body class="auth-page"> <!-- Class khusus untuk styling auth page -->
+    <div class="auth-container"> <!-- Container utama untuk auth forms -->
+        <div class="auth-card"> <!-- Card putih dengan shadow (container form) -->
+            <!-- ===== LOGO & HEADER ===== -->
+            <div class="auth-logo"> <!-- Sektion logo dan judul -->
+                <!-- Icon brain dari Font Awesome -->
+                <i class="fas fa-brain"></i>
+                <!-- Judul aplikasi dengan gradient text -->
+                <h1>MindCare</h1>
+                <!-- Subtitle deskripsi -->
+                <p>Your Mental Wellness Journey ✨</p>
+            </div>
+
+            <!-- ===== LOGIN FORM ===== -->
+            <div id="loginForm" class="auth-form"> <!-- Form login (default visible) -->
+                <!-- Heading form -->
+                <h2>Welcome Back! 👋</h2>
+                <!-- Subtitle -->
+                <p class="subtitle">Sign in to continue your wellness journey</p>
+
+                <!-- Success message container (hidden by default) -->
+                <div class="success-message" id="loginSuccess"></div>
+
+                <!-- Error message container (hidden by default) -->
+                <div class="error-message" id="loginError"></div>
+
+                <form onsubmit="handleLogin(event)"> <!-- Form login dengan custom handler -->
+                    <!-- Email input group -->
+                    <div class="form-group">
+                        <!-- Label dengan icon -->
+                        <label for="loginEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <!-- Email input field -->
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            class="form-control"
+                            placeholder="you@example.com"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <!-- Password input group -->
+                    <div class="form-group">
+                        <!-- Label dengan icon -->
+                        <label for="loginPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <!-- Password input field -->
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            class="form-control"
+                            placeholder="••••••••"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <!-- Icon untuk toggle show/hide password -->
+                        <i class="fas fa-eye password-toggle" id="toggleLoginPassword" onclick="togglePassword('loginPassword', 'toggleLoginPassword')"></i>
+                    </div>
+
+                    <!-- Forgot password link -->
+                    <div class="forgot-password">
+                        <a href="#" onclick="showForgotPassword(); return false;">Forgot password?</a>
+                    </div>
+
+                    <!-- Remember me checkbox -->
+                    <div class="checkbox-custom">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+
+                    <!-- Login submit button -->
+                    <button type="submit" class="btn-auth btn-primary" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+
+                <!-- Divider antara email login dan social login -->
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <!-- Social login buttons (Google & GitHub) -->
+                <div class="social-login">
+                    <!-- Google login button -->
+                    <button class="social-btn google" onclick="signInWithGoogle()" type="button">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <!-- GitHub login button -->
+                    <button class="social-btn github" onclick="signInWithGithub()" type="button">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+
+                <!-- Link ke register form -->
+                <div class="auth-switch">
+                    Don't have an account?
+                    <a href="#" onclick="showRegister(); return false;">Sign up</a>
+                </div>
+            </div>
+
+            <!-- ===== REGISTER FORM ===== -->
+            <div id="registerForm" class="auth-form" style="display: none;"> <!-- Form register (hidden default) -->
+                <!-- Heading form -->
+                <h2>Create Account ✨</h2>
+                <!-- Subtitle -->
+                <p class="subtitle">Start your mental wellness journey today</p>
+
+                <!-- Success message container (hidden by default) -->
+                <div class="success-message" id="registerSuccess"></div>
+
+                <!-- Error message container (hidden by default) -->
+                <div class="error-message" id="registerError"></div>
+
+                <form onsubmit="handleRegister(event)"> <!-- Form register dengan custom handler -->
+                    <!-- Full name input -->
+                    <div class="form-group">
+                        <label for="registerName">
+                            <i class="fas fa-user"></i> Full Name
+                        </label>
+                        <input
+                            type="text"
+                            id="registerName"
+                            class="form-control"
+                            placeholder="John Doe"
+                            required
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-group">
+                        <label for="registerEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            class="form-control"
+                            placeholder="you@example.com"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-group">
+                        <label for="registerPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            class="form-control"
+                            placeholder="Min. 6 characters"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            oninput="checkPasswordStrength(this.value)"
+                        >
+                        <!-- Toggle show/hide password icon -->
+                        <i class="fas fa-eye password-toggle" id="toggleRegisterPassword" onclick="togglePassword('registerPassword', 'toggleRegisterPassword')"></i>
+
+                        <!-- Password strength indicator bar -->
+                        <div class="password-strength" id="passwordStrength">
+                            <!-- Bar yang mengisi berdasarkan strength -->
+                            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Terms & conditions checkbox -->
+                    <div class="checkbox-custom">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms">I agree to the <a href="#" style="color: var(--primary-purple);">Terms & Conditions</a></label>
+                    </div>
+
+                    <!-- Register submit button -->
+                    <button type="submit" class="btn-auth btn-primary" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+
+                <!-- Divider antara email register dan social signup -->
+                <div class="divider">
+                    <span>or sign up with</span>
+                </div>
+
+                <!-- Social signup buttons -->
+                <div class="social-login">
+                    <button class="social-btn google" onclick="signInWithGoogle()" type="button">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button class="social-btn github" onclick="signInWithGithub()" type="button">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+
+                <!-- Link ke login form -->
+                <div class="auth-switch">
+                    Already have an account?
+                    <a href="#" onclick="showLogin(); return false;">Sign in</a>
+                </div>
+            </div>
+
+            <!-- ===== FORGOT PASSWORD FORM ===== -->
+            <div id="forgotPasswordForm" class="auth-form" style="display: none;"> <!-- Form reset password (hidden default) -->
+                <!-- Heading -->
+                <h2>Reset Password 🔑</h2>
+                <!-- Subtitle -->
+                <p class="subtitle">Enter your email to receive reset instructions</p>
+
+                <!-- Success message container -->
+                <div class="success-message" id="forgotSuccess"></div>
+
+                <!-- Error message container -->
+                <div class="error-message" id="forgotError"></div>
+
+                <form onsubmit="handleForgotPassword(event)"> <!-- Form reset password dengan custom handler -->
+                    <!-- Email input untuk reset -->
+                    <div class="form-group">
+                        <label for="forgotEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input
+                            type="email"
+                            id="forgotEmail"
+                            class="form-control"
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- Submit button untuk send reset email -->
+                    <button type="submit" class="btn-auth btn-primary" id="forgotBtn">
+                        <i class="fas fa-paper-plane"></i> Send Reset Link
+                    </button>
+                </form>
+
+                <!-- Link kembali ke login -->
+                <div class="auth-switch">
+                    Remember your password?
+                    <a href="#" onclick="showLogin(); return false;">Sign in</a>
+                </div>
+            </div>
+
+            <!-- ===== BACK TO HOME LINK ===== -->
+            <div class="back-home">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating background elements (decorative) -->
+        <!-- Element 1: Gradient blob effect (kiri atas) -->
+        <div style="position: fixed; top: 10%; left: 5%; width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; opacity: 0.1; filter: blur(40px); z-index: -1; animation: float 6s ease-in-out infinite;"></div>
+        <!-- Element 2: Gradient blob effect (kanan bawah) -->
+        <div style="position: fixed; bottom: 10%; right: 10%; width: 150px; height: 150px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; opacity: 0.1; filter: blur(40px); z-index: -1; animation: float 8s ease-in-out infinite;"></div>
+    </div>
+
+    <!-- Supabase JS (CDN) - Library untuk autentikasi & database -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Client Configuration - Setup koneksi ke backend -->
+    <script src="supabase-client.js"></script>
+
+    <!-- Login Page Scripts - Handler untuk UI login page (toggle password, dll) -->
+    <script src="login.js"></script>
+</body>
+</html>
