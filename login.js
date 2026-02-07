@@ -1,9 +1,3 @@
-/**
- * MindCare - Login Page Scripts
- * File: login.js
- *
- * Menangani interaksi login, register, password visibility, dan autentikasi user
- */
 
 /**
  * Toggle visibilitas password (show/hide password)
@@ -247,3 +241,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error checking auth status:', error);
     }
 });
+
