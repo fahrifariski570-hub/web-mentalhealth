@@ -1,8 +1,4 @@
-
-// ================================================
 // QUIZ DATA - Questions & Options
-// ================================================
-
 const questions = [
     {
         // Pertanyaan 1 tentang depresi
@@ -80,17 +76,12 @@ const questions = [
     }
 ];
 
-// ================================================
 // QUIZ STATE VARIABLES - Menyimpan status quiz
-// ================================================
-
 let currentQuestion = 0; // Index pertanyaan yang sedang ditampilkan (mulai dari 0)
 let answers = []; // Array untuk menyimpan jawaban user (index = question index, value = score)
 
-// ================================================
-// QUIZ FUNCTIONS
-// ================================================
 
+// QUIZ FUNCTIONS
 /**
  * Mulai kuesioner - Sembunyikan layar awal dan tampilkan form
  * User bisa mulai kuesioner tanpa login, login hanya diperlukan saat submit/simpan hasil
@@ -359,10 +350,7 @@ function resetQuiz() {
     });
 }
 
-// ================================================
 // SMOOTH SCROLL FOR NAVIGATION
-// ================================================
-
 /**
  * Smooth scroll ke section tertentu
  */
@@ -392,10 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ================================================
 // UTILITIES
-// ================================================
-
 /**
  * Log quiz statistics (for debugging)
  */
@@ -417,4 +402,5 @@ if (typeof module !== 'undefined' && module.exports) {
         changeQuestion
     };
 }
+
 
