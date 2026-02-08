@@ -1,9 +1,3 @@
-
-
-/* ================================================
-   PASSWORD TOGGLE ICON
-   ================================================ */
-
 /**
  * Icon untuk toggle show/hide password (mata icon)
  */
@@ -367,4 +361,5 @@
     /* Tambah underline saat hover */
     text-decoration: underline;
 }
+
 
