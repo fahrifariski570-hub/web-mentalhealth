@@ -1,20 +1,12 @@
 
-
-// ================================================
 // KONFIGURASI SUPABASE
-// ================================================
-
-
 const SUPABASE_URL = 'https://friwvfvdjdzouuxlrfta.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_aNbhbn3fdboIhS0S-RKm0Q_b_76Eej1';
 
 // Inisialisasi Supabase Client
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ================================================
 // MANAJEMEN STATE AUTENTIKASI
-// ================================================
-
 let currentUser = null;
 
 /**
@@ -53,10 +45,8 @@ async function getSession() {
     }
 }
 
-// ================================================
-// FUNGSI AUTENTIKASI
-// ================================================
 
+// FUNGSI AUTENTIKASI
 /**
  * Registrasi user baru dengan email dan password
  * @param {string} email - Email user
@@ -88,7 +78,7 @@ async function signUp(email, password, fullName) {
                         user_id: authData.user.id,
                         email: email,
                         full_name: fullName,
-                    }
+                    
                 ]);
 
             // Abaikan error duplikasi (user mungkin sudah ada)
@@ -267,9 +257,8 @@ async function updateUserProfile(userId, updates) {
     }
 }
 
-// ================================================
+
 // FUNGSI KUESIONER
-// ================================================
 
 /**
  * Simpan hasil kuesioner ke Supabase
@@ -388,10 +377,8 @@ async function getUserStats() {
     }
 }
 
-// ================================================
-// FUNGSI FEEDBACK
-// ================================================
 
+// FUNGSI FEEDBACK
 /**
  * Kirim feedback user
  * @param {string} name - Nama user
@@ -432,9 +419,8 @@ async function submitFeedback(name, email, message) {
     }
 }
 
-// ================================================
+
 // PENDENGAR STATE AUTENTIKASI
-// ================================================
 
 /**
  * Dengarkan perubahan state autentikasi
@@ -464,10 +450,8 @@ supabase.auth.onAuthStateChange((event, session) => {
     }
 });
 
-// ================================================
-// FUNGSI UPDATE UI
-// ================================================
 
+// FUNGSI UPDATE UI
 /**
  * Update elemen UI berdasarkan state autentikasi
  */
@@ -509,9 +493,8 @@ function updateUIForAuthState() {
     }
 }
 
-// ================================================
+
 // FUNGSI UTILITY
-// ================================================
 
 /**
  * Cek apakah user autentikasi, redirect ke login jika tidak
@@ -541,9 +524,8 @@ function redirectAfterLogin() {
     }
 }
 
-// ================================================
+
 // INISIALISASI SAAT HALAMAN LOAD
-// ================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Cek status autentikasi
@@ -556,27 +538,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Current user:', currentUser ? currentUser.email : 'Not logged in');
 });
 
-// ================================================
-// EXPORT (jika menggunakan modules)
-// ================================================
-
-// Uncomment jika menggunakan ES6 modules
-/*
-export {
-    supabase,
-    checkAuth,
-    getSession,
-    signUp,
-    signIn,
-    signOut,
-    signInWithOAuth,
-    getUserProfile,
-    updateUserProfile,
-    saveQuizResult,
-    getUserQuizHistory,
-    getUserStats,
-    submitFeedback,
-    requireAuth,
-    redirectAfterLogin
-};
 */
